@@ -37,13 +37,15 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jet-right") and velocity.x < 200 and not is_on_floor():
 		velocity.x += JET_ACCELERATION_HORIZ
 
-	# Get the input direction and handle the movement/deceleration.
+	# Get the input direction (leftOrRight) and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("left", "right")
-	if direction and is_on_floor():
-		velocity.x = direction * SPEED
-	else:
+	var leftOrRight = Input.get_axis("left", "right")
+	if leftOrRight and is_on_floor():
+		velocity.x = leftOrRight * SPEED
+	elif is_on_floor(): # stop quickly if on the floor
 		velocity.x = move_toward(velocity.x, 0, 12)
+	else: # stop slowly (glide) if in the air
+		velocity.x = move_toward(velocity.x, 0, 4)
 
 	move_and_slide()
 	
