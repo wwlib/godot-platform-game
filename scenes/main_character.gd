@@ -8,14 +8,13 @@ const JET_ACCELERATION_HORIZ = 1500.00
 const FUEL_PER_SECOND_UP = 15
 const FUEL_PER_SECOND_HORIZ = 5
 
-#@onready var sprite_2d = $AnimatedSprite2D
-var sprite_2d
+var main_character_sprite_2d
 var game_manager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("main_character: ready")
-	sprite_2d = %MainCharacterSprite2D
+	main_character_sprite_2d = %MainCharacterSprite2D
 	game_manager = get_node("../../GameManager")
 	print(game_manager)
 
@@ -26,14 +25,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _physics_process(delta):
 	# Animations
 	if (velocity.x > 1 || velocity.x < -1):
-		sprite_2d.animation = "running"
+		main_character_sprite_2d.animation = "running"
 	else:
-		sprite_2d.animation = "default"
+		main_character_sprite_2d.animation = "default"
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		sprite_2d.animation = "jumping"
+		main_character_sprite_2d.animation = "jumping"
 
 	# Handle running Left/Right
 	# Get the input direction (leftOrRight) and handle the movement/deceleration.
@@ -72,4 +71,4 @@ func _physics_process(delta):
 	
 	# Set sprite direction
 	var isLeft = velocity.x < 0
-	sprite_2d.flip_h = isLeft
+	main_character_sprite_2d.flip_h = isLeft
