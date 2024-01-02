@@ -5,7 +5,7 @@ var game_manager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("collectible: ready")
+	print("powerup: ready")
 	game_manager = %GameManager
 	print(game_manager)
 
@@ -17,5 +17,5 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if (body.name == "MainCharacter"):
-		body.collect_item()
+		body.collect_powerup()
 		queue_free()
