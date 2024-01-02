@@ -469,7 +469,7 @@ script = ExtResource("5_6qjkb")
 
 [node name="SceneObjects" type="Node" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="SceneObjects"]
+[node name="background" type="TextureRect" parent="SceneObjects"]
 texture_filter = 1
 offset_top = -292.0
 offset_right = 2843.0

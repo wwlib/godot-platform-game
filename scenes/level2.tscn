@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ctlj36ob6vtc2"]
 
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_2e58n"]
-[ext_resource type="Texture2D" uid="uid://bpy5exg7nepe8" path="res://assets/Green.png" id="2_fwgtf"]
+[ext_resource type="Texture2D" uid="uid://d4hg28bwmb6x4" path="res://assets/Blue.png" id="2_j0jln"]
 [ext_resource type="Texture2D" uid="uid://cv5hk1qh1bngt" path="res://assets/Terrain (16x16).png" id="3_uwm1g"]
 [ext_resource type="PackedScene" uid="uid://cu41pyejsxqwd" path="res://scenes/main_character.tscn" id="4_6shdg"]
 [ext_resource type="PackedScene" uid="uid://bxf0b24t45edc" path="res://scenes/collectible.tscn" id="5_e5qy2"]
@@ -469,12 +469,12 @@ script = ExtResource("1_2e58n")
 
 [node name="SceneObjects" type="Node" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="SceneObjects"]
+[node name="background" type="TextureRect" parent="SceneObjects"]
 texture_filter = 1
 offset_top = -292.0
 offset_right = 2843.0
 offset_bottom = 622.0
-texture = ExtResource("2_fwgtf")
+texture = ExtResource("2_j0jln")
 stretch_mode = 1
 
 [node name="TileMap" type="TileMap" parent="SceneObjects"]
