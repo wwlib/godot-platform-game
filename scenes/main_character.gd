@@ -5,7 +5,12 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const JET_ACCELERATION_UP = -50.00
 const JET_ACCELERATION_HORIZ = 50.00
-@onready var sprite_2d = $AnimatedSprite2D
+#@onready var sprite_2d = $AnimatedSprite2D
+var sprite_2d
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	sprite_2d = $AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
