@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://bxf0b24t45edc"]
 
-[ext_resource type="Texture2D" uid="uid://mlcs1iexxeo3" path="res://Pineapple.png" id="1_cldli"]
+[ext_resource type="Texture2D" uid="uid://mlcs1iexxeo3" path="res://assets/Pineapple.png" id="1_cldli"]
 [ext_resource type="Script" path="res://scenes/collectible.gd" id="1_psj4q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jp2pe"]

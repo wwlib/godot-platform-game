@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ysstrguad3cn"]
+[gd_scene load_steps=9 format=3 uid="uid://ysstrguad3cn"]
 
-[ext_resource type="Texture2D" uid="uid://bpy5exg7nepe8" path="res://Green.png" id="1_cv1kf"]
-[ext_resource type="Texture2D" uid="uid://cv5hk1qh1bngt" path="res://Terrain (16x16).png" id="2_kiolc"]
+[ext_resource type="Texture2D" uid="uid://bpy5exg7nepe8" path="res://assets/Green.png" id="1_cv1kf"]
+[ext_resource type="Texture2D" uid="uid://cv5hk1qh1bngt" path="res://assets/Terrain (16x16).png" id="2_kiolc"]
 [ext_resource type="PackedScene" uid="uid://cu41pyejsxqwd" path="res://scenes/main_character.tscn" id="3_j7b4o"]
 [ext_resource type="PackedScene" uid="uid://bxf0b24t45edc" path="res://scenes/collectible.tscn" id="4_2peqb"]
-[ext_resource type="Script" path="res://game_manager.gd" id="5_6qjkb"]
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="5_6qjkb"]
+[ext_resource type="PackedScene" uid="uid://d3ty0uxy5l5po" path="res://scenes/trophy.tscn" id="6_oufeg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_43xip"]
 texture = ExtResource("2_kiolc")
@@ -460,7 +461,13 @@ sources/0 = SubResource("TileSetAtlasSource_43xip")
 
 [node name="Node" type="Node"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_6qjkb")
+
+[node name="SceneObjects" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="SceneObjects"]
 texture_filter = 1
 offset_top = -292.0
 offset_right = 2843.0
@@ -468,26 +475,50 @@ offset_bottom = 622.0
 texture = ExtResource("1_cv1kf")
 stretch_mode = 1
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="SceneObjects"]
 texture_filter = 1
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_cf126")
 format = 2
 layer_0/tile_data = PackedInt32Array(786432, 393216, 0, 786433, 458752, 0, 786434, 458752, 0, 786435, 458752, 0, 786436, 458752, 0, 786437, 458752, 0, 786438, 458752, 0, 786439, 458752, 0, 786440, 458752, 0, 786441, 458752, 0, 786442, 458752, 0, 786443, 458752, 0, 786444, 458752, 0, 786445, 458752, 0, 786446, 458752, 0, 786447, 458752, 0, 786448, 458752, 0, 786451, 458752, 0, 786450, 458752, 0, 786449, 458752, 0, 786452, 458752, 0, 786453, 458752, 0, 786454, 458752, 0, 786455, 458752, 0, 65535, 458752, 1, 131071, 458752, 1, 196607, 458752, 1, 262143, 458752, 1, 327679, 458752, 1, 393215, 458752, 1, 458751, 458752, 1, 524287, 458752, 1, 589823, 458752, 1, 655359, 458752, 1, 720895, 458752, 1, 786431, 458752, 1, 851967, 458752, 1, -1, 458752, 1, 917503, 458752, 1, 851968, 458752, 1, 851969, 458752, 1, 851970, 458752, 1, 851971, 458752, 1, 851972, 458752, 1, 851973, 458752, 1, 851974, 458752, 1, 851975, 458752, 1, 851978, 458752, 1, 851979, 458752, 1, 851980, 458752, 1, 851981, 458752, 1, 851982, 458752, 1, 851983, 458752, 1, 851984, 458752, 1, 851985, 458752, 1, 851986, 458752, 1, 851987, 458752, 1, 851988, 458752, 1, 851989, 458752, 1, 851990, 458752, 1, 851991, 458752, 1, 851992, 458752, 1, 851977, 458752, 1, 851976, 458752, 1, -65537, 458752, 1, -131073, 458752, 1, -196609, 458752, 1, -262145, 458752, 1, -327681, 458752, 1, -393217, 458752, 1, -458752, 458752, 1, -458751, 458752, 1, -458750, 458752, 1, -458749, 458752, 1, -458748, 458752, 1, -458747, 458752, 1, -458746, 458752, 1, -458745, 458752, 1, -458744, 458752, 1, -458743, 458752, 1, -458742, 458752, 1, -458741, 458752, 1, -458740, 458752, 1, -458739, 458752, 1, -458738, 458752, 1, -458737, 458752, 1, -458736, 458752, 1, -458735, 458752, 1, -458734, 458752, 1, -458733, 458752, 1, -458732, 458752, 1, -458731, 458752, 1, -458730, 458752, 1, -458729, 458752, 1, 851993, 458752, 1, 851994, 458752, 1, 851995, 458752, 1, 851996, 458752, 1, 851997, 458752, 1, 851998, 458752, 1, 851999, 458752, 1, 852000, 458752, 1, 852001, 458752, 1, 852002, 458752, 1, 852003, 458752, 1, 852004, 458752, 1, 852005, 458752, 1, 852006, 458752, 1, 852007, 458752, 1, 852008, 458752, 1, 852009, 458752, 1, 852010, 458752, 1, 852012, 458752, 1, 852013, 458752, 1, 852014, 458752, 1, 852015, 458752, 1, 852011, 458752, 1, 852016, 458752, 1, 852017, 458752, 1, 852018, 458752, 1, 852019, 458752, 1, 852020, 458752, 1, 852021, 458752, 1, 852022, 458752, 1, 852023, 458752, 1, 852024, 458752, 1, 852025, 458752, 1, -458728, 458752, 1, -458727, 458752, 1, -458726, 458752, 1, -458725, 458752, 1, -458724, 458752, 1, -458723, 458752, 1, -458722, 458752, 1, -458721, 458752, 1, -458720, 458752, 1, -458719, 458752, 1, -458718, 458752, 1, -458717, 458752, 1, -458716, 458752, 1, -458715, 458752, 1, -458714, 458752, 1, -458713, 458752, 1, -458712, 458752, 1, -458711, 458752, 1, -458710, 458752, 1, -458709, 458752, 1, -458708, 458752, 1, -458707, 458752, 1, -458706, 458752, 1, -458705, 458752, 1, -458704, 458752, 1, -458703, 458752, 1, -458702, 458752, 1, -458701, 458752, 1, -458700, 458752, 1, -458699, 458752, 1, -458698, 458752, 1, -458697, 458752, 1, -393157, 458752, 1, -458693, 458752, 1, -458694, 458752, 1, -458695, 458752, 1, -458696, 458752, 1, -327621, 458752, 1, -262085, 458752, 1, -196549, 458752, 1, -131013, 458752, 1, -65477, 458752, 1, 59, 458752, 1, 65595, 458752, 1, 131131, 458752, 1, 196667, 458752, 1, 262203, 458752, 1, 327739, 458752, 1, 393275, 458752, 1, 458811, 458752, 1, 524347, 458752, 1, 589883, 458752, 1, 655419, 458752, 1, 720955, 458752, 1, 786491, 458752, 1, 852027, 458752, 1, 852026, 458752, 1, 786456, 458752, 0, 786457, 458752, 0, 786458, 458752, 0, 786459, 458752, 0, 786460, 458752, 0, 786461, 458752, 0, 786462, 458752, 0, 786463, 458752, 0, 786464, 458752, 0, 786465, 458752, 0, 786466, 458752, 0, 786467, 458752, 0, 786468, 458752, 0, 786469, 458752, 0, 786470, 458752, 0, 786471, 458752, 0, 786472, 458752, 0, 786473, 458752, 0, 786474, 458752, 0, 786475, 458752, 0, 786476, 458752, 0, 786477, 458752, 0, 786478, 458752, 0, 786479, 458752, 0, 786480, 458752, 0, 786481, 458752, 0, 786482, 458752, 0, 786483, 458752, 0, 786484, 458752, 0, 786485, 458752, 0, 786486, 458752, 0, 786487, 458752, 0, 786488, 458752, 0, 786489, 458752, 0, 786490, 458752, 0)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_j7b4o")]
+[node name="MainCharacter" parent="SceneObjects" instance=ExtResource("3_j7b4o")]
 position = Vector2(134, 141)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="SceneObjects/MainCharacter"]
 position = Vector2(1, 7)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 
-[node name="GameManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("5_6qjkb")
+[node name="CollectiblesGroup" type="Node" parent="SceneObjects"]
 
-[node name="Collectibles Group" type="Node" parent="."]
-
-[node name="Collectible" parent="Collectibles Group" instance=ExtResource("4_2peqb")]
+[node name="Collectible" parent="SceneObjects/CollectiblesGroup" instance=ExtResource("4_2peqb")]
 position = Vector2(437, 560)
+
+[node name="Finish" parent="SceneObjects" instance=ExtResource("6_oufeg")]
+position = Vector2(2777, 539)
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="UIPanel" type="Panel" parent="UI"]
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 321.0
+offset_bottom = 110.0
+
+[node name="StatsLabel" type="Label" parent="UI/UIPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.999997, 1)
+text = "Points: 0
+Fuel: 100"

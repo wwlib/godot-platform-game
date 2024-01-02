@@ -5,7 +5,9 @@ var game_manager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("collectible: ready")
 	game_manager = %GameManager
+	print(game_manager)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,6 +16,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if (body.name == "CharacterBody2D"):
+	if (body.name == "MainCharacter"):
 		queue_free()
 		game_manager.add_point()
+		game_manager.add_fuel(100)

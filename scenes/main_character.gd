@@ -3,14 +3,21 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const JET_ACCELERATION_UP = -50.00
-const JET_ACCELERATION_HORIZ = 50.00
+const JET_ACCELERATION_UP = -1500.00
+const JET_ACCELERATION_HORIZ = 1500.00
+const FUEL_PER_SECOND_UP = 15
+const FUEL_PER_SECOND_HORIZ = 5
+
 #@onready var sprite_2d = $AnimatedSprite2D
 var sprite_2d
+var game_manager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite_2d = $AnimatedSprite2D
+	print("main_character: ready")
+	sprite_2d = %MainCharacterSprite2D
+	game_manager = get_node("../../GameManager")
+	print(game_manager)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -28,22 +35,8 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		sprite_2d.animation = "jumping"
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	# Handle jet.
-	if Input.is_action_pressed("jet-up") and velocity.y > -200:
-		velocity.y += JET_ACCELERATION_UP
-		
-	if Input.is_action_pressed("jet-left") and velocity.x > -200 and not is_on_floor():
-		velocity.x -= JET_ACCELERATION_HORIZ
-		
-	if Input.is_action_pressed("jet-right") and velocity.x < 200 and not is_on_floor():
-		velocity.x += JET_ACCELERATION_HORIZ
-
+	# Handle running Left/Right
 	# Get the input direction (leftOrRight) and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var leftOrRight = Input.get_axis("left", "right")
 	if leftOrRight and is_on_floor():
 		velocity.x = leftOrRight * SPEED
@@ -51,8 +44,32 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, 12)
 	else: # stop slowly (glide) if in the air
 		velocity.x = move_toward(velocity.x, 0, 4)
+		
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+	# Handle jet.
+	if Input.is_action_pressed("jet-up") and velocity.y > -200:
+		var fuel_needed = FUEL_PER_SECOND_UP * delta
+		var check_fuel = game_manager.use_fuel(fuel_needed)
+		if (check_fuel):
+			velocity.y += JET_ACCELERATION_UP * delta
+		
+	if Input.is_action_pressed("jet-left") and velocity.x > -200 and not is_on_floor():
+		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
+		var check_fuel = game_manager.use_fuel(fuel_needed)
+		if (check_fuel):
+			velocity.x -= JET_ACCELERATION_HORIZ * delta
+		
+	if Input.is_action_pressed("jet-right") and velocity.x < 200 and not is_on_floor():
+		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
+		var check_fuel = game_manager.use_fuel(fuel_needed)
+		if (check_fuel):
+			velocity.x += JET_ACCELERATION_HORIZ * delta
 
 	move_and_slide()
 	
+	# Set sprite direction
 	var isLeft = velocity.x < 0
 	sprite_2d.flip_h = isLeft

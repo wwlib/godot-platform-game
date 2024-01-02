@@ -1,9 +1,9 @@
 [gd_scene load_steps=31 format=3 uid="uid://cu41pyejsxqwd"]
 
 [ext_resource type="Script" path="res://scenes/main_character.gd" id="1_1oiih"]
-[ext_resource type="Texture2D" uid="uid://8f7btwmkspq0" path="res://Jump (32x32).png" id="1_cgpav"]
-[ext_resource type="Texture2D" uid="uid://ojkfh3l6mcdo" path="res://Idle (32x32).png" id="2_o35b5"]
-[ext_resource type="Texture2D" uid="uid://cur433cp0va3n" path="res://Run (32x32).png" id="4_5hxgp"]
+[ext_resource type="Texture2D" uid="uid://8f7btwmkspq0" path="res://assets/Jump (32x32).png" id="1_cgpav"]
+[ext_resource type="Texture2D" uid="uid://ojkfh3l6mcdo" path="res://assets/Idle (32x32).png" id="2_o35b5"]
+[ext_resource type="Texture2D" uid="uid://cur433cp0va3n" path="res://assets/Run (32x32).png" id="4_5hxgp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qmik"]
 atlas = ExtResource("2_o35b5")
@@ -198,7 +198,7 @@ height = 58.0
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_1oiih")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="MainCharacterSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(1, 0)
