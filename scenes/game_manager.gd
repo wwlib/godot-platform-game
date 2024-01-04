@@ -2,8 +2,10 @@ extends Node
 
 var stats_label
 
-func update_stats(points, fuel):
+func update_stats(points, health, fuel):
 	stats_label.text = "Points: " + str(points)
+	stats_label.text += "\n"
+	stats_label.text += "Health: " + str(floor(health))
 	stats_label.text += "\n"
 	stats_label.text += "Fuel: " + str(floor(fuel))
 
