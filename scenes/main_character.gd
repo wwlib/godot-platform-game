@@ -119,20 +119,23 @@ func _physics_process(delta):
 		if (check_fuel):
 			velocity.y += JET_ACCELERATION_UP * delta
 
-
 	move_and_slide()
 	
 	# Set sprite direction
 	var isLeft = velocity.x < 0
 	main_character_sprite_2d.flip_h = isLeft
 	
+	# Check for fall damage
 	if (is_on_floor() and previous_y_velocity > 0):
 		if (previous_y_velocity > 1500):
 			health -= 30
+			Input.start_joy_vibration(0,0.5,0.5,1)
 		elif (previous_y_velocity > 1000):
 			health -= 20
+			Input.start_joy_vibration(0,0.5,0.5,1)
 		elif (previous_y_velocity > 500):
 			health -= 10
+			Input.start_joy_vibration(0,0.5,0.5,1)
 		health_bar.set_value(health)
 		game_manager.update_stats(points, health, fuel)
 
