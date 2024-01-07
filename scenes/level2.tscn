@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://4483mu0ekvar" path="res://scenes/powerup.tscn" id="6_62tgu"]
 [ext_resource type="PackedScene" uid="uid://d3ty0uxy5l5po" path="res://scenes/trophy.tscn" id="7_28qon"]
 [ext_resource type="PackedScene" uid="uid://dl4yc53yqftky" path="res://scenes/main_menu.tscn" id="8_hsbem"]
-[ext_resource type="PackedScene" uid="uid://cnp5tp6kb4x5w" path="res://scenes/healthup.tscn" id="9_btyos"]
+[ext_resource type="PackedScene" path="res://scenes/healthup.tscn" id="9_btyos"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_43xip"]
 texture = ExtResource("3_uwm1g")
