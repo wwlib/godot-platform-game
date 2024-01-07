@@ -94,9 +94,15 @@ func _physics_process(delta):
 
 	# Handle running Left/Right
 	# Get the input direction (leftOrRight) and handle the movement/deceleration.
+	# leftOrRight is -1 or 1 (left or right)
 	var leftOrRight = Input.get_axis("left", "right")
 	if leftOrRight and is_on_floor():
 		velocity.x = leftOrRight * SPEED
+	elif leftOrRight and not is_on_floor() and abs(velocity.x) < 200:
+		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
+		var check_fuel = use_fuel(fuel_needed)
+		if (check_fuel):
+			velocity.x += leftOrRight * JET_ACCELERATION_HORIZ * delta
 	elif is_on_floor(): # stop quickly if on the floor
 		velocity.x = move_toward(velocity.x, 0, 12)
 	else: # stop slowly (glide) if in the air
@@ -112,18 +118,7 @@ func _physics_process(delta):
 		var check_fuel = use_fuel(fuel_needed)
 		if (check_fuel):
 			velocity.y += JET_ACCELERATION_UP * delta
-		
-	if Input.is_action_pressed("jet-left") and velocity.x > -200 and not is_on_floor():
-		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
-		var check_fuel = use_fuel(fuel_needed)
-		if (check_fuel):
-			velocity.x -= JET_ACCELERATION_HORIZ * delta
-		
-	if Input.is_action_pressed("jet-right") and velocity.x < 200 and not is_on_floor():
-		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
-		var check_fuel = use_fuel(fuel_needed)
-		if (check_fuel):
-			velocity.x += JET_ACCELERATION_HORIZ * delta
+
 
 	move_and_slide()
 	
