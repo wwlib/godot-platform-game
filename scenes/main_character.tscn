@@ -1,9 +1,9 @@
 [gd_scene load_steps=33 format=3 uid="uid://cu41pyejsxqwd"]
 
 [ext_resource type="Script" path="res://scenes/main_character.gd" id="1_1oiih"]
-[ext_resource type="Texture2D" uid="uid://8f7btwmkspq0" path="res://assets/Jump (32x32).png" id="1_cgpav"]
-[ext_resource type="Texture2D" uid="uid://ojkfh3l6mcdo" path="res://assets/Idle (32x32).png" id="2_o35b5"]
-[ext_resource type="Texture2D" uid="uid://cur433cp0va3n" path="res://assets/Run (32x32).png" id="4_5hxgp"]
+[ext_resource type="Texture2D" uid="uid://8f7btwmkspq0" path="res://assets/VirtualGuy/Jump (32x32).png" id="1_cgpav"]
+[ext_resource type="Texture2D" uid="uid://ojkfh3l6mcdo" path="res://assets/VirtualGuy/Idle (32x32).png" id="2_o35b5"]
+[ext_resource type="Texture2D" uid="uid://cur433cp0va3n" path="res://assets/VirtualGuy/Run (32x32).png" id="4_5hxgp"]
 [ext_resource type="Theme" uid="uid://crb5sspy51cca" path="res://assets/fuel_bar_theme.tres" id="5_tyb0f"]
 [ext_resource type="Theme" uid="uid://q5av12n3w1y4" path="res://assets/health_bar_theme.tres" id="6_4ct60"]
 
@@ -206,8 +206,10 @@ texture_filter = 1
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dhmgq")
-animation = &"jumping"
+animation = &"running"
 autoplay = "default"
+frame = 11
+frame_progress = 0.422635
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)

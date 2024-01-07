@@ -22,8 +22,8 @@ var previous_y_velocity = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("main_character: ready")
-	main_character_sprite_2d = %MainCharacterSprite2D
+	print("enemy_character: ready")
+	main_character_sprite_2d = %EnemyCharacterSprite2D
 	game_manager = get_node("../../GameManager")
 	print(game_manager)
 	health_bar = get_node("./HealthBar")
@@ -94,36 +94,36 @@ func _physics_process(delta):
 
 	# Handle running Left/Right
 	# Get the input direction (leftOrRight) and handle the movement/deceleration.
-	var leftOrRight = Input.get_axis("left", "right")
-	if leftOrRight and is_on_floor():
-		velocity.x = leftOrRight * SPEED
-	elif is_on_floor(): # stop quickly if on the floor
-		velocity.x = move_toward(velocity.x, 0, 12)
-	else: # stop slowly (glide) if in the air
-		velocity.x = move_toward(velocity.x, 0, 4)
+	#var leftOrRight = Input.get_axis("left", "right")
+	#if leftOrRight and is_on_floor():
+		#velocity.x = leftOrRight * SPEED
+	#elif is_on_floor(): # stop quickly if on the floor
+		#velocity.x = move_toward(velocity.x, 0, 12)
+	#else: # stop slowly (glide) if in the air
+		#velocity.x = move_toward(velocity.x, 0, 4)
 		
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+		#
+	## Handle jet.
+	#if Input.is_action_pressed("jet-up") and velocity.y > -200:
+		#var fuel_needed = FUEL_PER_SECOND_UP * delta
+		#var check_fuel = use_fuel(fuel_needed)
+		#if (check_fuel):
+			#velocity.y += JET_ACCELERATION_UP * delta
 		
-	# Handle jet.
-	if Input.is_action_pressed("jet-up") and velocity.y > -200:
-		var fuel_needed = FUEL_PER_SECOND_UP * delta
-		var check_fuel = use_fuel(fuel_needed)
-		if (check_fuel):
-			velocity.y += JET_ACCELERATION_UP * delta
-		
-	if Input.is_action_pressed("jet-left") and velocity.x > -200 and not is_on_floor():
-		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
-		var check_fuel = use_fuel(fuel_needed)
-		if (check_fuel):
-			velocity.x -= JET_ACCELERATION_HORIZ * delta
-		
-	if Input.is_action_pressed("jet-right") and velocity.x < 200 and not is_on_floor():
-		var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
-		var check_fuel = use_fuel(fuel_needed)
-		if (check_fuel):
-			velocity.x += JET_ACCELERATION_HORIZ * delta
+	#if Input.is_action_pressed("jet-left") and velocity.x > -200 and not is_on_floor():
+		#var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
+		#var check_fuel = use_fuel(fuel_needed)
+		#if (check_fuel):
+			#velocity.x -= JET_ACCELERATION_HORIZ * delta
+		#
+	#if Input.is_action_pressed("jet-right") and velocity.x < 200 and not is_on_floor():
+		#var fuel_needed = FUEL_PER_SECOND_HORIZ * delta
+		#var check_fuel = use_fuel(fuel_needed)
+		#if (check_fuel):
+			#velocity.x += JET_ACCELERATION_HORIZ * delta
 
 	move_and_slide()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctlj36ob6vtc2"]
+[gd_scene load_steps=12 format=3 uid="uid://ctlj36ob6vtc2"]
 
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_2e58n"]
 [ext_resource type="Texture2D" uid="uid://d4hg28bwmb6x4" path="res://assets/Blue.png" id="2_j0jln"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://4483mu0ekvar" path="res://scenes/powerup.tscn" id="6_62tgu"]
 [ext_resource type="PackedScene" uid="uid://d3ty0uxy5l5po" path="res://scenes/trophy.tscn" id="7_28qon"]
 [ext_resource type="PackedScene" uid="uid://dl4yc53yqftky" path="res://scenes/main_menu.tscn" id="8_hsbem"]
+[ext_resource type="PackedScene" uid="uid://cnp5tp6kb4x5w" path="res://scenes/healthup.tscn" id="9_btyos"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_43xip"]
 texture = ExtResource("3_uwm1g")
@@ -528,3 +529,6 @@ grow_vertical = 2
 scale = Vector2(0.999997, 1)
 text = "Points: 0
 Fuel: 100"
+
+[node name="HealthUp" parent="." instance=ExtResource("9_btyos")]
+position = Vector2(1754, -214)
