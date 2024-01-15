@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -500.0
 const JET_ACCELERATION_UP = -1500.00
 const JET_ACCELERATION_HORIZ = 1500.00
 const MAX_HEALTH = 100
@@ -103,6 +103,7 @@ func _physics_process(delta):
 		var check_fuel = use_fuel(fuel_needed)
 		if (check_fuel):
 			velocity.x += leftOrRight * JET_ACCELERATION_HORIZ * delta
+		velocity.x += leftOrRight * JET_ACCELERATION_HORIZ * delta	
 	elif is_on_floor(): # stop quickly if on the floor
 		velocity.x = move_toward(velocity.x, 0, 12)
 	else: # stop slowly (glide) if in the air
@@ -138,6 +139,9 @@ func _physics_process(delta):
 			Input.start_joy_vibration(0,0.5,0.5,1)
 		health_bar.set_value(health)
 		game_manager.update_stats(points, health, fuel)
+		
+		if (health <= 0):
+			game_manager.game_over()
 
 	previous_y_velocity = velocity.y
 

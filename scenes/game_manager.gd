@@ -1,5 +1,7 @@
 extends Node
 
+@export var game_over_scene : PackedScene
+
 var stats_label
 
 func update_stats(points, health, fuel):
@@ -9,6 +11,8 @@ func update_stats(points, health, fuel):
 	stats_label.text += "\n"
 	stats_label.text += "Fuel: " + str(floor(fuel))
 
+func game_over():
+	get_tree().change_scene_to_packed(game_over_scene)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
